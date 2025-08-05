@@ -1,0 +1,13 @@
+{
+  "ignore": [
+    "gen",
+    "node_modules",
+    "tests",
+    "*.g.js",
+    "tmp",
+    "apistub.gen.js",
+    "*index.d.ts",
+    "package-lock.json",
+    ".idea"
+  ]
+}
