@@ -9,8 +9,8 @@ class Idgen {
         const seq = await this.nextSeq(timeBase);
         // -----------------------------------
         // 将 seq 转为 6 位
-        const rand = this.Sugar.randomDigits(5); // 6位（100000次）基本不可猜测
-        const id = `${timeBase}${seq.toString().padStart(6, '0')}${rand}`
+        const rand = this.Sugar.randomDigits(4); // 6位（100000次）基本不可猜测
+        const id = `${timeBase}${seq.toString().padStart(7, '0')}${rand}`
         return id;
     }
 
@@ -24,7 +24,7 @@ class Idgen {
             const redisKey = `${timeBase}`;
             const seq = await this.redis.incr(redisKey);
             await this.redis.expire(redisKey, 60); // 60 秒
-            return req;
+            return seq;
         } else {
             // 如果 timeBase 相同，则使用本地 seq 自增，如果 timeBase 不同，则现将 _preTimeBase 设为 timeBase，_localSeq 归零
             if (this._preTimeBase !== timeBase) {
