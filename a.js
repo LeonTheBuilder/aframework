@@ -73,6 +73,9 @@ a.loadContext = async (cfg) => {
             },
         );
     }
+    if (cfg.sqlite?.enabled) {
+        a.db = new Sequelize(`sqlite:${cfg.sqlite.filePath}`);
+    }
 
     // rules 需要 autowire framework 自己的 bean 和 worker
     if (!a.cfg.autowire.folders) a.cfg.autowire.folders = [];

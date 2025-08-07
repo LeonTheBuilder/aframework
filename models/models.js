@@ -382,6 +382,12 @@ class BizError extends Error {
         }
     }
 
+    static dependsOn(component, componentTitle) {
+        if (!component) {
+            BizError.accident(`depends ${componentTitle} to use this bean`);
+        }
+    }
+
 }
 
 module.exports = {

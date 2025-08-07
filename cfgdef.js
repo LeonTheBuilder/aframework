@@ -12,7 +12,7 @@ const cfgdef = () => {
             folders: [],
         },
         loadContextFilePath: __dirname, // loadContext.js 文件路径，绝对路径
-        genFolder: path.join(__dirname, 'gen'),
+        genFolder: process.env.APP_GEN_FOLDER || path.join(__dirname, 'gen'),
         typeJsFolder: __dirname,
         // -----------------------------------------------------------------------------------------------------------------
         log: {
@@ -54,20 +54,24 @@ const cfgdef = () => {
             secret: process.env.JWT_SECRET || '34xdrgw345q345',
         },
         redis: {
-            enabled: true,
-            host: '127.0.0.1',
-            port: 6379,
+            enabled: process.env.REDIS_ENABLED || true,
+            host: process.env.REDIS_HOST || '127.0.0.1',
+            port: process.env.REDIS_PORT || 6379,
         },
         mysql: {
-            enabled: true,
+            enabled: process.env.MYSQL_ENABLED || true,
             database: process.env.MYSQL_DATABASE || 'localdev',
             username: process.env.MYSQL_USERNAME || 'root',
             password: process.env.MYSQL_PASSWORD || '1qaz2wsx',
             host: 'localhost',
             logging: false,
         },
+        sqlite: {
+            enabled: process.env.SQLITE_ENABLED || false,
+            filePath: process.env.SQLITE_PATH || './sqlite.gen',
+        },
         web: {
-            enabled: true,
+            enabled: process.env.WEB_ENABLED || true,
             rootPath: '',
             port: process.env.WEB_PORT || 3000,
             view: {

@@ -1,10 +1,15 @@
 class Dlock {
     async tryLock(lockkey, handler, seconds) {
+
+        //
+        this.BizError.dependsOn(this.redis, 'redis');
+        
+
         if (!seconds) {
             seconds = 60 * 60; // rules 默认一小时过期
         }
         try {
-            const result = await this.a.redis.set(
+            const result = await this.redis.set(
                 lockkey,
                 '_',
                 'NX', // Only set the key if it does not already exist.
@@ -16,10 +21,10 @@ class Dlock {
                 return false;
             }
             await handler();
-            await this.a.redis.del(lockkey);
+            await this.redis.del(lockkey);
         } catch (error) {
             this.log.error(error);
-            await this.a.redis.del(lockkey);
+            await this.redis.del(lockkey);
             throw error;
         }
     }
