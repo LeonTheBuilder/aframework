@@ -4,7 +4,6 @@ const serve = require('koa-static');
 const {koaBody} = require('koa-body');
 const Router = require('@koa/router');
 const cors = require('@koa/cors');
-const views = require('koa-views');
 const multer = require('koa-multer');
 const fs = require('fs');
 const path = require('path');
@@ -31,7 +30,7 @@ class Web {
             maxage: 365 * 24 * 60 * 60 * 1000, // 1年缓存时间（毫秒）
             gzip: true,
         };
-        app.use(serve(cfg.web.view.staticFolder, staticOptions));
+        app.use(serve(path.join(cfg.app.rootFolder, "node_modules/web_resources/src/web/public"), staticOptions));
         // -------------------------------------------------------------------------------------------------------
         // 自定义中间件：注入通用数据
         app.use(async (ctx, next) => {
@@ -90,13 +89,6 @@ class Web {
         // Request 处理为 api 和 func
         const router = new Router();
 
-        // if (cfg.web.view?.viewFolder) {
-        //     app.use(
-        //         views(cfg.web.view.viewFolder, {
-        //             extension: 'ejs', // 使用 EJS 模板引擎
-        //         }),
-        //     );
-        // }
         router.get(`${cfg.web.rootPath}/ping`, async (ctx) => {
             const idTime = await this.idgen.nextId();
             ctx.body = `pong.${idTime}`;

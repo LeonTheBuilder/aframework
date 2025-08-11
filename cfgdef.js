@@ -7,13 +7,11 @@ const cfgdef = () => {
         app: {
             name: process.env.APP_NAME || 'app',
             storageRoot: process.env.APP_STORAGE_ROOT || './',
+            rootFolder: null,
         },
         autowire: {
             folders: [],
         },
-        loadContextFilePath: __dirname, // loadContext.js 文件路径，绝对路径
-        genFolder: process.env.APP_GEN_FOLDER || path.join(__dirname, 'gen'),
-        typeJsFolder: __dirname,
         // -----------------------------------------------------------------------------------------------------------------
         log: {
             enabled: true,
@@ -74,10 +72,6 @@ const cfgdef = () => {
             enabled: process.env.WEB_ENABLED || true,
             rootPath: '',
             port: process.env.WEB_PORT || 3000,
-            view: {
-                apiStubFolder: null, // apistub.js 文件的生成目录
-                staticFolder: null, // 这个需要配置为项目的 node_modules/web_resources/src/web/public
-            },
             upload: {
                 enabled: false,
                 uploadTmpFolder: '',

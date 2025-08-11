@@ -6,7 +6,7 @@ class TsGenerator {
     static async generate(a) {
         const Sugar = a.models.Sugar;
         //
-        const typeJsFolder = a.cfg.typeJsFolder;
+        const typeJsFolder = a.cfg.app.rootFolder;
         if (!typeJsFolder) {
             throw new Error('cfg.typeJsFolder is null');
         }

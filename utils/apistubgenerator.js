@@ -1,16 +1,18 @@
 //
 const path = require('path');
+const {Sugar} = require("../models/models");
 
 class ApiStubGenerator {
 
     static async generate(a) {
         const Sugar = a.models.Sugar;
         const cfg = a.cfg;
-        //
-        const viewFolder = a.cfg.web.view.apiStubFolder;
+        // rules 将api sub js 生成在 gen 目录
+        const viewFolder = path.join(a.cfg.app.rootFolder, 'gen');
         if (!viewFolder) {
             throw new Error('cfg.web.view.apiStubFolder is null');
         }
+        await Sugar.ensureFolder(viewFolder);
 
 
         // rules api 必须都是 post

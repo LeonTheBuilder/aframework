@@ -7,8 +7,8 @@ class WorkerStarter {
 
     static async startWorkers(a) {
 
-        //
-        let loadContextFilePath = a.cfg.loadContextFilePath;
+        // rules loadContext.js 必须位于 项目根目录/src/
+        let loadContextFilePath = path.join(a.cfg.app.rootFolder, 'src', 'loadContext.js');
 
         // ensure path
 
@@ -20,11 +20,13 @@ class WorkerStarter {
         // unsure path use /
         loadContextFilePath = loadContextFilePath.replace(/\\/g, '/');
 
-        const genWorkerFolder = a.cfg.genFolder;
+        const genWorkerFolder = path.join(a.cfg.app.rootFolder, 'gen');
+
         if (!genWorkerFolder) {
             throw new Error('cfg.genFolder is null');
         }
 
+        await Sugar.ensureFolder(genWorkerFolder);
 
         Object.keys(a.beans).map((name) => {
 
