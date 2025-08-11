@@ -7,9 +7,9 @@ class ApiStubGenerator {
         const Sugar = a.models.Sugar;
         const cfg = a.cfg;
         //
-        const viewFolder = a.cfg.web.view.viewFolder;
+        const viewFolder = a.cfg.web.view.apiStubFolder;
         if (!viewFolder) {
-            throw new Error('cfg.web.view.viewFolder is null');
+            throw new Error('cfg.web.view.apiStubFolder is null');
         }
 
 

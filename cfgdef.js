@@ -75,7 +75,8 @@ const cfgdef = () => {
             rootPath: '',
             port: process.env.WEB_PORT || 3000,
             view: {
-                staticFolder: '这个需要配置为项目的 node_modules/web_resources/src/web/public',
+                apiStubFolder: null, // apistub.js 文件的生成目录
+                staticFolder: null, // 这个需要配置为项目的 node_modules/web_resources/src/web/public
             },
             upload: {
                 enabled: false,
