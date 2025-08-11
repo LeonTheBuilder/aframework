@@ -75,7 +75,7 @@ const cfgdef = () => {
             rootPath: '',
             port: process.env.WEB_PORT || 3000,
             view: {
-                viewFolder: '/cfg.web.view.viewFolder thismustbemodified',
+                staticFolder: '这个需要配置为项目的 node_modules/web_resources/src/web/public',
             },
             upload: {
                 enabled: false,
