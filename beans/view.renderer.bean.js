@@ -1,10 +1,11 @@
 const ejs = require('ejs');
-
+const fs = require('fs').promises;
 
 // ViewRenderer
 class Vr {
-    render(ctx, ejsFilePath) {
-        const html = ejs.render(ejsFilePath, {appcfg: this.cfg});
+    async render(ctx, ejsFilePath) {
+        const templateContent = await fs.readFile(ejsFilePath, 'utf8');
+        const html = ejs.render(templateContent, {appcfg: this.cfg});
         ctx.type = 'text/html; charset=utf-8';
         ctx.body = html;
     }
