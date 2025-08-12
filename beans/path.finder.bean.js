@@ -26,6 +26,11 @@ class PathFinder {
         );
         return relPath;
     }
+
+
+    appGenFolder() {
+        return this.path.join(this.cfg.app.rootFolder, "gen");
+    }
 }
 
 module.exports = PathFinder;
