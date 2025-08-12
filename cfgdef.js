@@ -66,7 +66,7 @@ const cfgdef = () => {
         },
         sqlite: {
             enabled: process.env.SQLITE_ENABLED || false,
-            filePath: process.env.SQLITE_PATH || './sqlite.gen',
+            filePath: process.env.SQLITE_PATH || null,
         },
         web: {
             enabled: process.env.WEB_ENABLED || true,

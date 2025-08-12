@@ -74,7 +74,8 @@ a.loadContext = async (cfg) => {
         );
     }
     if (cfg.sqlite?.enabled) {
-        a.db = new Sequelize(`sqlite:${cfg.sqlite.filePath}`);
+        // rules sqlite 文件默认生成在 gen 目录
+        a.db = new Sequelize(`sqlite:${cfg.sqlite.filePath || path.join(a.cfg.app.rootFolder, 'gen', 'app.gen.sqlite')}`);
     }
 
     // rules 需要 autowire framework 自己的 bean 和 worker

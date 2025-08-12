@@ -20,6 +20,8 @@ class WorkerStarter {
         // unsure path use /
         loadContextFilePath = loadContextFilePath.replace(/\\/g, '/');
 
+
+        // rules 默认规则：使用 rootFolder/gen 作为生成目录
         const genWorkerFolder = path.join(a.cfg.app.rootFolder, 'gen');
 
         if (!genWorkerFolder) {
