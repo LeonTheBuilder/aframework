@@ -7,7 +7,7 @@ const cfgdef = () => {
         app: {
             name: process.env.APP_NAME || 'app',
             storageRoot: process.env.APP_STORAGE_ROOT || './',
-            rootFolder: null,
+            rootFolder: __dirname,
         },
         autowire: {
             folders: [],

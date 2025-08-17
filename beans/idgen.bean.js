@@ -9,7 +9,7 @@ class Idgen {
         const seq = await this.nextSeq(timeBase);
         // -----------------------------------
         // 将 seq 转为 6 位
-        const rand = this.Sugar.randomDigits(4); // 6位（100000次）基本不可猜测
+        const rand = this.Sugar.randomString(4); // 6位（100000次）基本不可猜测
         const id = `${timeBase}${seq.toString().padStart(7, '0')}${rand}`
         return id;
     }
