@@ -239,10 +239,17 @@ class Sugar {
         return dayjs(date).format(format);
     }
 
+
     static string2date(str, format) {
         const customDate = dayjs(str, format);
         return customDate.toDate();
     }
+
+    static convertDateStringFormat(str, orgFormat, targetFormat) {
+        const date = Sugar.string2date(str, orgFormat);
+        return Sugar.date2string(date, targetFormat);
+    }
+
 
     // =================================================================
     // other
