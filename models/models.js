@@ -279,24 +279,24 @@ class Sugar {
         return randomNumber;
     }
 
+    static _chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
     static randomString(length) {
         // 定义包含所有可能字符的字符串
-        const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let result = '';
-
-        // 确保长度是有效的正整数
         if (typeof length !== 'number' || length <= 0 || !Number.isInteger(length)) {
             throw new Error('长度必须是正整数');
         }
 
         // 随机选择字符并拼接
+        const array = new Array(length);
         for (let i = 0; i < length; i++) {
             // 生成0到chars长度之间的随机索引
-            const randomIndex = Math.floor(Math.random() * chars.length);
-            result += chars[randomIndex];
+            const randomIndex = Math.floor(Math.random() * Sugar._chars.length);
+            const c = Sugar._chars[randomIndex];
+            array[i] = c;
         }
 
-        return result;
+        return array.join('');
     }
 }
 
