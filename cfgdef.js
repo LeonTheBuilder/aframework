@@ -80,6 +80,9 @@ const cfgdef = () => {
                 includeUnparsed: false
             }
         },
+        worker: {
+            enabled: process.env.WORKER_ENABLED || true,
+        }
         // -----------------------------------------------------------------------------------------------------------------
 
     };

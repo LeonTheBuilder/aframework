@@ -94,11 +94,19 @@ a.loadContext = async (cfg) => {
 
 a.start = async () => {
     if (a.cfg.web?.enabled) {
+        a.log.info('start web');
         await a.beans.web.start();
+    } else {
+        a.log.info('not start web');
     }
 
-    // rules 此时开始启动 workers ，那么 worker 的执行都是在 bean 的 postConstruct 之后
-    await WorkerStarter.startWorkers(a);
+    if (a.cfg.worker?.enabled) {
+        a.log.info('start worker');
+        await WorkerStarter.startWorkers(a);
+    } else {
+        a.log.info('not start worker');
+    }
+
 };
 
 
