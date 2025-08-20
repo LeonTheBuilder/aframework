@@ -34,6 +34,20 @@ class Sugar {
         }
     }
 
+    static async schedule(asyncFunc, intervalMs) {
+        //
+        while (true) {
+            try {
+                // 执行传入的异步函数
+                await asyncFunc();
+            } catch (error) {
+                console.error('异步函数执行出错:', error);
+                // 出错后仍继续下一次执行，可根据需要修改
+            }
+            await Sugar.sleep(intervalMs);
+        }
+    }
+
     // =================================================================
     // json
     static extractJson(text) {
