@@ -34,7 +34,7 @@ class Sugar {
         }
     }
 
-    static async periodicExecute(asyncFunc, intervalMs) {
+    static async schedule(asyncFunc, intervalMs) {
         //
         while (true) {
             try {
